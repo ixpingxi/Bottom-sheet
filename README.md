@@ -2,7 +2,7 @@
 Google Material : Bottom-sheet
 
 
-### HTML-markup as modal content
+### HTML-markup 
 
 
 ### Javascript
