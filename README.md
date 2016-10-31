@@ -6,8 +6,7 @@ Google Material : Bottom-sheet
     var Test_BottomSheet = new BottomSheet();
     Test_BottomSheet.create();
     
-### javascript  
-   
+### javascript   
 ```javascript
      Test_BottomSheet.open();
      Test_BottomSheet.close();
