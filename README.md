@@ -1,5 +1,7 @@
 # Bottom-sheet
 Google Material : Bottom-sheet
 
-    var Test_BottomSheet = new BottomSheet(modal_data);
+    var Test_BottomSheet = new BottomSheet();
     Test_BottomSheet.create();
+    
+    
