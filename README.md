@@ -6,9 +6,10 @@ Google Material : Bottom-sheet
     
     
 Command :
-  
-  Test_BottomSheet.open();
-  Test_BottomSheet.close();
-  Test_BottomSheet.toggle();
-  Test_BottomSheet.remove();
+  `  Test_BottomSheet.open();
+     Test_BottomSheet.close();
+     Test_BottomSheet.toggle();
+     Test_BottomSheet.remove();
+  `
+
     
