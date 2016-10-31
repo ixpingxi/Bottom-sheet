@@ -5,3 +5,10 @@ Google Material : Bottom-sheet
     Test_BottomSheet.create();
     
     
+Command :
+  
+  Test_BottomSheet.open();
+  Test_BottomSheet.close();
+  Test_BottomSheet.toggle();
+  Test_BottomSheet.remove();
+    
