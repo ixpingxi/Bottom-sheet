@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/bottom-sheet.css">
+</head>
+<body>
+
+<ul class="md1">
+    <li class="toggle" onclick="Test_BottomSheet.toggle()">Toggle</li>
+    <li class="open" onclick="Test_BottomSheet.open()">Open</li>
+    <li class="close" >Close</li>
+    <li class="create" >Create</li>
+    <li class="remove" >Remove</li>
+</ul>
+
+
+<ul class="md2">
+    <li class="toggle" >Toggle</li>
+    <li class="open" >Open</li>
+    <li class="close" >Close</li>
+    <li class="create" >Create</li>
+    <li class="remove" >Remove</li>
+</ul>
+
+
+
+<script>
+
+    function BottomSheet(data){
+        this.data = data;
+        this.created = 0;
+        this.elelment = null;
+    }
+
+
+    BottomSheet.prototype.close = function(){
+        this.elelment.classList.remove('active');
+        document.body.classList.remove('disable-scroll');
+    };
+
+    BottomSheet.prototype.open = function(){
+        this.elelment.classList.add('active');
+        document.body.classList.add('disable-scroll');
+        this.elelment.style.display=null;
+
+    };
+
+    BottomSheet.prototype.toggle = function(){
+        this.elelment.classList.toggle('active');
+        document.body.classList.toggle('disable-scroll');
+        this.elelment.style.display=null;
+    };
+
+    BottomSheet.prototype.remove = function(){
+        var elem = this.elelment;
+        elem.parentNode.removeChild(elem);
+        this.created = 0;
+        this.elelment = null;
+    };
+
+    BottomSheet.prototype.create = function(){
+        if(this.created == 0){
+            //Create Bottom Sheet
+            var s = '<span class="overlay-close"></span>' +
+                    '<div class="wrap">' +
+                    '<div class="body">'+this.data+'</div>' +
+                    '<span class="ico ico-close close">Close</span>' +
+                    '</div>' +
+                    ''; // HTML string
+            this.elelment = document.createElement('md-bottom-sheet');
+            this.elelment.id = '';
+            this.elelment.style.display = 'none';
+            this.elelment.className ='bottom-sheet';
+            this.elelment.innerHTML = s;
+
+            //Set Close Overlay
+            this.elelment.querySelector('.overlay-close').addEventListener("click", function() {
+                //closeBottomSheet();
+                this.parentNode.classList.remove('active');
+                document.body.classList.remove('disable-scroll');
+            });
+
+            this.elelment.querySelector('.close').addEventListener("click", function(e) {
+                e.stopPropagation();
+                e.preventDefault();
+                this.parentNode.parentNode.classList.remove('active');
+                document.body.classList.remove('disable-scroll');
+            });
+
+            this.elelment.addEventListener("animationend",function(e){
+                if(!this.classList.contains('active')){
+                    this.style.display = 'none';
+                }
+            },false);
+
+
+            //Append To Body
+            document.body.appendChild(this.elelment);
+            this.created = 1;
+
+
+
+        }
+    };
+
+
+    /////////////// Test ///////////////
+
+    var  modal_data = '<a class="modal-title" onclick="Test_BottomSheet.close()" style="display: block; height: 300px;">111</a> testets';
+    var Test_BottomSheet = new BottomSheet(modal_data);
+    Test_BottomSheet.create()
+
+    var  modal_data2 = '<h2 class="modal-title" onclick="Test_BottomSheet2.close()">222</h2> testets';
+    var Test_BottomSheet2 = new BottomSheet(modal_data2);
+    Test_BottomSheet2.create()
+
+    //console.log(modal());
+    /*document.querySelector('.md1 .toggle').addEventListener("click", function(){Test_BottomSheet.toggle();});
+    document.querySelector('.md1 .open').addEventListener("click", function(){Test_BottomSheet.open();});
+    document.querySelector('.md1 .close').addEventListener("click", function(){Test_BottomSheet.close();});
+    document.querySelector('.md1 .create').addEventListener("click", function(){Test_BottomSheet.create();});
+    document.querySelector('.md1 .remove').addEventListener("click", function(){Test_BottomSheet.remove();});*/
+
+    document.querySelector('.md2 .toggle').addEventListener("click", function(){Test_BottomSheet2.toggle();});
+    document.querySelector('.md2 .open').addEventListener("click", function(){Test_BottomSheet2.open();});
+    document.querySelector('.md2 .close').addEventListener("click", function(){Test_BottomSheet2.close();});
+    document.querySelector('.md2 .create').addEventListener("click", function(){Test_BottomSheet2.create();});
+    document.querySelector('.md2 .remove').addEventListener("click", function(){Test_BottomSheet2.remove();});
+
+</script>
+
+</body>
+</html>

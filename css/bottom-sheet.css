@@ -1,0 +1,39 @@
+html,body{margin: 0;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    min-height: 100%;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+.bottom-sheet{position:fixed;top:0;left:0;right:0;bottom:0; text-align:center;  overflow-y: auto; overflow-x: hidden; z-index: 99}
+.bottom-sheet > div{width:100%; text-align: left; animation: hide 400ms  cubic-bezier(.55, 0, .55, .2) forwards; background:#fff;    position:fixed; bottom: 0;  padding:0 16px; box-sizing:border-box;  }
+.bottom-sheet.active > div{  animation: show 400ms cubic-bezier(.25,.8,.25,1) forwards; will-change: opacity,transform;   }
+.bottom-sheet>.wrap{  max-height: calc(100vh - 128px);}
+.bottom-sheet .wrap>.body{ max-height: calc(100vh - 210px);  overflow: hidden;  overflow-y: auto; }
+.bottom-sheet div .close{position:absolute;right:0;top:0;color:transparent; display: none}  .bottom-sheet div .close:after{content:''; background:#FFF url(close.svg) no-repeat center center;background-size:40%;display:block;position:absolute;right:-10px;top:-10px;width:30px;height:30px;line-height:24px;padding:1px 1px 1px 2px;text-decoration:none;text-shadow:none;text-align:center;color:#fff;border-radius:20px;box-shadow:0 1px 3px rgba(0,0,0,0.5); cursor: pointer }  .bottom-sheet div .close:hover:after{-webkit-transform:scale(1.1,1.1);-moz-transform:scale(1.1,1.1);transform:scale(1.1,1.1)}
+.bottom-sheet>.overlay-close{background:rgba(0,0,0,0.45);  position: absolute; animation: transparent 400ms  ease-out forwards; line-height: 0; left: 0; top:0; bottom: 0; right: 0;   cursor: pointer }
+.bottom-sheet.active>.overlay-close{  opacity: 1; will-change: opacity; animation: untransparent 400ms  ease-in forwards; }
+@keyframes hide{
+    0%{}
+    100% {   transform: translate3d(0,100%,0); }
+}
+@keyframes show{
+    0%{ transform: translate3d(0,100%,0);;  }
+    100% { transform: translate3d(0,0,0);); }
+}
+
+/**************Other USEFUL***************/
+@keyframes transparent{
+    0%{ opacity: 1;   } 100% {  opacity: 0;  }
+}
+@keyframes untransparent{
+    0%{ opacity: 0 ;   } 100% { opacity: 1; }
+}
+
+.disable-scroll {
+    overflow: hidden;
+    height: 100vh;
+    /*pointer-events: none;*/
+}
